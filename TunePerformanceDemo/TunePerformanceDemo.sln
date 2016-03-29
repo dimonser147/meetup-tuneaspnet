@@ -1,0 +1,65 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2 - TPD.DAL", "TPD.DAL\2 - TPD.DAL.csproj", "{5ED198C5-F029-4217-9901-6CC21EB30DFD}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "1- TPD.DB", "TPD.DB\1- TPD.DB.sqlproj", "{26BA0D62-B95E-496E-B547-D46E05252BFE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "3 - TPD.DTO", "TPD.DTO\3 - TPD.DTO.csproj", "{00CD42FD-2C18-408D-B5F2-6B5AAF6C1DCE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "4 - TPD.Presentation", "TPD.Presentation\4 - TPD.Presentation.csproj", "{56C7B386-5AC1-4642-81E4-42B4FFED5612}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E6580DB6-52A1-47D0-9E67-F47ADD3BA282}"
+	ProjectSection(SolutionItems) = preProject
+		ReadMe.txt = ReadMe.txt
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5ED198C5-F029-4217-9901-6CC21EB30DFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5ED198C5-F029-4217-9901-6CC21EB30DFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5ED198C5-F029-4217-9901-6CC21EB30DFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5ED198C5-F029-4217-9901-6CC21EB30DFD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{26BA0D62-B95E-496E-B547-D46E05252BFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26BA0D62-B95E-496E-B547-D46E05252BFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26BA0D62-B95E-496E-B547-D46E05252BFE}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{26BA0D62-B95E-496E-B547-D46E05252BFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26BA0D62-B95E-496E-B547-D46E05252BFE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{26BA0D62-B95E-496E-B547-D46E05252BFE}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{00CD42FD-2C18-408D-B5F2-6B5AAF6C1DCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00CD42FD-2C18-408D-B5F2-6B5AAF6C1DCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00CD42FD-2C18-408D-B5F2-6B5AAF6C1DCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00CD42FD-2C18-408D-B5F2-6B5AAF6C1DCE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56C7B386-5AC1-4642-81E4-42B4FFED5612}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56C7B386-5AC1-4642-81E4-42B4FFED5612}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56C7B386-5AC1-4642-81E4-42B4FFED5612}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56C7B386-5AC1-4642-81E4-42B4FFED5612}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 5
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://obolonyk.visualstudio.com/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = TPD.DAL\\2\u0020-\u0020TPD.DAL.csproj
+		SccProjectName1 = TPD.DAL
+		SccLocalPath1 = TPD.DAL
+		SccProjectUniqueName2 = TPD.DB\\1-\u0020TPD.DB.sqlproj
+		SccProjectName2 = TPD.DB
+		SccLocalPath2 = TPD.DB
+		SccProjectUniqueName3 = TPD.Presentation\\4\u0020-\u0020TPD.Presentation.csproj
+		SccProjectName3 = TPD.Presentation
+		SccLocalPath3 = TPD.Presentation
+		SccProjectUniqueName4 = TPD.DTO\\3\u0020-\u0020TPD.DTO.csproj
+		SccProjectName4 = TPD.DTO
+		SccLocalPath4 = TPD.DTO
+	EndGlobalSection
+EndGlobal

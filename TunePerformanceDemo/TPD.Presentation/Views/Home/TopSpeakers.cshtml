@@ -1,0 +1,25 @@
+﻿@model IEnumerable<TPD.DTO.Events.SpeakerPreviewDTO>
+
+<h2>Most rated developers</h2>
+<div class="container">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-6 col-sm-6">
+                <div class="card hovercard">
+                    <img class="cardheader" alt="user blured photo" src="@item.ImageUrl" />
+                    <div class="avatar">
+                        <img alt="user photo" src="@item.ImageUrl">
+                    </div>
+                    <div class="info">
+                        <div class="title">
+                            <a>@item.Lastname @item.Firstname</a>
+                        </div>
+                        <div class="desc">@item.Position</div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+

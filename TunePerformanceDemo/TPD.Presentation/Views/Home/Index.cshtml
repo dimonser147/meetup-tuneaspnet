@@ -1,0 +1,57 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+@model IEnumerable<TPD.DTO.Events.SpeakerPreviewDTO>
+
+<div class="grid">
+    <div class="col-md-3 col-sm-6">
+        @Html.Action("ComingSoon")
+        @Html.Action("TopSpeakers")
+    </div>
+    <div class="col-md-9 col-sm-6">
+        <h2>All speakers</h2>
+        <div class="row">
+            @foreach (var speaker in Model)
+            {
+                <div class="col-md-4 col-sm-12">
+                    <div class="media">
+                        <a class="pull-left" href="#">
+
+                            <!-- BEGIN IMAGES LAZY LOADING -->
+                            <img alt="user photo" class="media-object dp img-circle" src="/Content/Images/blank-user-200.jpg" 
+                                 data-src="@speaker.ImageUrl" width="100" height="100">
+                            <!-- END IMAGES LAZY LOADING-->
+
+                            <!-- BEGIN IMAGES DEFAULT LOADING -->
+                            @*<img class="media-object dp img-circle" src="@speaker.ImageUrl" style="width: 100px;height:100px;">*@
+                            <!-- END IMAGES DEFAULT LOADING -->
+
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading">
+                                @speaker.Firstname @speaker.Lastname
+                                <small>@speaker.LikesCount <i class="glyphicon glyphicon-heart"></i></small>
+                            </h4>
+                            <h5>
+                                @speaker.Position participate in <a href="#">@speaker.ProgrammsCount programms</a>
+                            </h5>
+                            <hr style="margin:8px auto">
+                            <span class="badge">@speaker.Email</span>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+@section styles{
+    <link href="~/Content/schedulecard.css" rel="stylesheet" />
+    <link href="~/Content/generalspeaker.css" rel="stylesheet" />
+    <link href="~/Content/topspeaker.css" rel="stylesheet" />
+}
+
+@section scripts{
+    <script src="~/Scripts/lazyload.js"></script>
+}

@@ -1,0 +1,245 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="TunePerformanceDemoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Programms">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="BeginAt" Type="datetime" Nullable="false" />
+          <Property Name="EndAt" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SpeakerLikes">
+          <Key>
+            <PropertyRef Name="LikeId" />
+          </Key>
+          <Property Name="LikeId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SpeakerId" Type="int" Nullable="false" />
+          <Property Name="OccuredAt" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Speakers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Firstname" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Lastname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Position" Type="nvarchar" MaxLength="100" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+          <Property Name="ImageUrl" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="QrCode" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="SpeakersToProgramms">
+          <Key>
+            <PropertyRef Name="SpeakerId" />
+            <PropertyRef Name="ProgrammId" />
+          </Key>
+          <Property Name="SpeakerId" Type="int" Nullable="false" />
+          <Property Name="ProgrammId" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_SpeakerLikes_TO_Speakers">
+          <End Role="Speakers" Type="Self.Speakers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SpeakerLikes" Type="Self.SpeakerLikes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Speakers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SpeakerLikes">
+              <PropertyRef Name="SpeakerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SpeakersToProgramms_TO_Programms">
+          <End Role="Programms" Type="Self.Programms" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SpeakersToProgramms" Type="Self.SpeakersToProgramms" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Programms">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SpeakersToProgramms">
+              <PropertyRef Name="ProgrammId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SpeakersToProgramms_TO_Speakers">
+          <End Role="Speakers" Type="Self.Speakers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SpeakersToProgramms" Type="Self.SpeakersToProgramms" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Speakers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SpeakersToProgramms">
+              <PropertyRef Name="SpeakerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TunePerformanceDemoModelStoreContainer">
+          <EntitySet Name="Programms" EntityType="Self.Programms" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SpeakerLikes" EntityType="Self.SpeakerLikes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Speakers" EntityType="Self.Speakers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SpeakersToProgramms" EntityType="Self.SpeakersToProgramms" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_SpeakerLikes_TO_Speakers" Association="Self.FK_SpeakerLikes_TO_Speakers">
+            <End Role="Speakers" EntitySet="Speakers" />
+            <End Role="SpeakerLikes" EntitySet="SpeakerLikes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SpeakersToProgramms_TO_Programms" Association="Self.FK_SpeakersToProgramms_TO_Programms">
+            <End Role="Programms" EntitySet="Programms" />
+            <End Role="SpeakersToProgramms" EntitySet="SpeakersToProgramms" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SpeakersToProgramms_TO_Speakers" Association="Self.FK_SpeakersToProgramms_TO_Speakers">
+            <End Role="Speakers" EntitySet="Speakers" />
+            <End Role="SpeakersToProgramms" EntitySet="SpeakersToProgramms" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TunePerformanceDemoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="TunePerformanceDemoEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Programms" EntityType="TunePerformanceDemoModel.Programm" />
+          <EntitySet Name="SpeakerLikes" EntityType="TunePerformanceDemoModel.SpeakerLike" />
+          <EntitySet Name="Speakers" EntityType="TunePerformanceDemoModel.Speaker" />
+          <AssociationSet Name="FK_SpeakerLikes_TO_Speakers" Association="TunePerformanceDemoModel.FK_SpeakerLikes_TO_Speakers">
+            <End Role="Speaker" EntitySet="Speakers" />
+            <End Role="SpeakerLike" EntitySet="SpeakerLikes" />
+          </AssociationSet>
+          <AssociationSet Name="SpeakersToProgramms" Association="TunePerformanceDemoModel.SpeakersToProgramms">
+            <End Role="Programm" EntitySet="Programms" />
+            <End Role="Speaker" EntitySet="Speakers" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Programm">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="BeginAt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EndAt" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Speakers" Relationship="TunePerformanceDemoModel.SpeakersToProgramms" FromRole="Programm" ToRole="Speaker" />
+        </EntityType>
+        <EntityType Name="SpeakerLike">
+          <Key>
+            <PropertyRef Name="LikeId" />
+          </Key>
+          <Property Name="LikeId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SpeakerId" Type="Int32" Nullable="false" />
+          <Property Name="OccuredAt" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Speaker" Relationship="TunePerformanceDemoModel.FK_SpeakerLikes_TO_Speakers" FromRole="SpeakerLike" ToRole="Speaker" />
+        </EntityType>
+        <EntityType Name="Speaker">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Firstname" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Lastname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Position" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ImageUrl" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="QrCode" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="SpeakerLikes" Relationship="TunePerformanceDemoModel.FK_SpeakerLikes_TO_Speakers" FromRole="Speaker" ToRole="SpeakerLike" />
+          <NavigationProperty Name="Programms" Relationship="TunePerformanceDemoModel.SpeakersToProgramms" FromRole="Speaker" ToRole="Programm" />
+        </EntityType>
+        <Association Name="FK_SpeakerLikes_TO_Speakers">
+          <End Type="TunePerformanceDemoModel.Speaker" Role="Speaker" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="TunePerformanceDemoModel.SpeakerLike" Role="SpeakerLike" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Speaker">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SpeakerLike">
+              <PropertyRef Name="SpeakerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SpeakersToProgramms">
+          <End Type="TunePerformanceDemoModel.Programm" Role="Programm" Multiplicity="*" />
+          <End Type="TunePerformanceDemoModel.Speaker" Role="Speaker" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TunePerformanceDemoModelStoreContainer" CdmEntityContainer="TunePerformanceDemoEntities">
+          <EntitySetMapping Name="Programms">
+            <EntityTypeMapping TypeName="TunePerformanceDemoModel.Programm">
+              <MappingFragment StoreEntitySet="Programms">
+                <ScalarProperty Name="EndAt" ColumnName="EndAt" />
+                <ScalarProperty Name="BeginAt" ColumnName="BeginAt" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SpeakerLikes">
+            <EntityTypeMapping TypeName="TunePerformanceDemoModel.SpeakerLike">
+              <MappingFragment StoreEntitySet="SpeakerLikes">
+                <ScalarProperty Name="OccuredAt" ColumnName="OccuredAt" />
+                <ScalarProperty Name="SpeakerId" ColumnName="SpeakerId" />
+                <ScalarProperty Name="LikeId" ColumnName="LikeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Speakers">
+            <EntityTypeMapping TypeName="TunePerformanceDemoModel.Speaker">
+              <MappingFragment StoreEntitySet="Speakers">
+                <ScalarProperty Name="QrCode" ColumnName="QrCode" />
+                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="Lastname" ColumnName="Lastname" />
+                <ScalarProperty Name="Firstname" ColumnName="Firstname" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="SpeakersToProgramms" TypeName="TunePerformanceDemoModel.SpeakersToProgramms" StoreEntitySet="SpeakersToProgramms">
+            <EndProperty Name="Speaker">
+              <ScalarProperty Name="Id" ColumnName="SpeakerId" />
+            </EndProperty>
+            <EndProperty Name="Programm">
+              <ScalarProperty Name="Id" ColumnName="ProgrammId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,28 @@
+﻿@model IDictionary<TPD.DTO.Events.ProgrammComingSoonDTO, int>
+
+<h2>Coming soon</h2>
+<ul class="event-list">
+    @foreach (var item in Model)
+    {
+        <li>
+            <time>
+                <span class="day">@item.Key.Day</span>
+                <span class="month">@item.Key.Month</span>
+                <span class="year">@item.Key.Date.Year</span>
+                <span class="time">All Day</span>
+            </time>
+
+            <div class="info">
+                <h2 class="title">@item.Key.Title</h2>
+                <p class="desc">You can listen <a href="javascript:void(0);">@item.Value speakers</a></p>
+            </div>
+
+            <div class="social">
+                <ul>
+                    <li class="facebook" style="width:33%;"><a href="javascript:void(0);"><span class="fa fa-facebook"></span></a></li>
+                </ul>
+            </div>
+        </li>
+    }
+</ul>
+
