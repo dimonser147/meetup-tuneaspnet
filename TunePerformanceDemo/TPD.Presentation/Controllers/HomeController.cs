@@ -16,6 +16,9 @@ namespace TPD.Presentation.Controllers
     {
         IEventUOW _eventUOW;
 
+        const int MaxTopSpeakers = 10;
+        const int MaxComingSoonProgramms = 5;
+
         public HomeController(IEventUOW eventUOW)
         {
             _eventUOW = eventUOW;
@@ -25,33 +28,24 @@ namespace TPD.Presentation.Controllers
         public async Task<ActionResult> Index(bool useAsync = false)
         {
             IEnumerable<SpeakerPreviewDTO> speakers;
-            if (useAsync)
-                speakers = await _eventUOW.SpeakersRepository.GetAllSpeakersAsync();
-            else
-                speakers = _eventUOW.SpeakersRepository.GetAllSpeakers();
-            return View(speakers);
-        }
-
-        [ChildActionOnly]
-        public async Task<ActionResult> ComingSoon(int number = 5, bool useAsync = false)
-        {
             IDictionary<ProgrammComingSoonDTO, int> comingSoonProgramms;
-            if (useAsync)
-                comingSoonProgramms = await _eventUOW.ProgrammsRepository.GetComingSoonAsync(number);
-            else
-                comingSoonProgramms = _eventUOW.ProgrammsRepository.GetComingSoon(number);
-            return View(comingSoonProgramms);
-        }
-
-        [ChildActionOnly]
-        public async Task<ActionResult> TopSpeakers(int number = 10, bool useAsync = false)
-        {
             IEnumerable<SpeakerPreviewDTO> topSpeakers;
             if (useAsync)
-                topSpeakers = await _eventUOW.SpeakersRepository.GetTopSpeakersAsync(number);
+            {
+                speakers = await _eventUOW.SpeakersRepository.GetAllSpeakersAsync();                
+                topSpeakers = await _eventUOW.SpeakersRepository.GetTopSpeakersAsync(MaxTopSpeakers);
+                comingSoonProgramms = await _eventUOW.ProgrammsRepository.GetComingSoonAsync(MaxComingSoonProgramms);
+            }
             else
-                topSpeakers = _eventUOW.SpeakersRepository.GetTopSpeakers(number);
-            return View(topSpeakers);
+            {
+                speakers = _eventUOW.SpeakersRepository.GetAllSpeakers();
+                topSpeakers = _eventUOW.SpeakersRepository.GetTopSpeakers(MaxTopSpeakers);
+                comingSoonProgramms = _eventUOW.ProgrammsRepository.GetComingSoon(MaxComingSoonProgramms);
+            }
+            ViewBag.UseAsync = useAsync;
+            ViewBag.TopSpeakers = topSpeakers;
+            ViewBag.ComingSoonProgramms = comingSoonProgramms;
+            return View(speakers);
         }
 
         #endregion
