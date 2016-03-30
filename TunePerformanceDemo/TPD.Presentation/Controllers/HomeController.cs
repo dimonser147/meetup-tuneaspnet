@@ -22,23 +22,35 @@ namespace TPD.Presentation.Controllers
         }
 
         #region Main page
-        public ActionResult Index()
+        public async Task<ActionResult> Index(bool useAsync = false)
         {
-            IEnumerable<SpeakerPreviewDTO> speakers = _eventUOW.SpeakersRepository.GetAllSpeakers();
+            IEnumerable<SpeakerPreviewDTO> speakers;
+            if (useAsync)
+                speakers = await _eventUOW.SpeakersRepository.GetAllSpeakersAsync();
+            else
+                speakers = _eventUOW.SpeakersRepository.GetAllSpeakers();
             return View(speakers);
         }
 
         [ChildActionOnly]
-        public ActionResult ComingSoon(int number = 5)
+        public async Task<ActionResult> ComingSoon(int number = 5, bool useAsync = false)
         {
-            IDictionary<ProgrammComingSoonDTO, int> comingSoonProgramms = _eventUOW.ProgrammsRepository.GetComingSoon(number);
+            IDictionary<ProgrammComingSoonDTO, int> comingSoonProgramms;
+            if (useAsync)
+                comingSoonProgramms = await _eventUOW.ProgrammsRepository.GetComingSoonAsync(number);
+            else
+                comingSoonProgramms = _eventUOW.ProgrammsRepository.GetComingSoon(number);
             return View(comingSoonProgramms);
         }
 
         [ChildActionOnly]
-        public ActionResult TopSpeakers(int number = 10)
+        public async Task<ActionResult> TopSpeakers(int number = 10, bool useAsync = false)
         {
-            IEnumerable<SpeakerPreviewDTO> topSpeakers = _eventUOW.SpeakersRepository.GetTopSpeakers(number);
+            IEnumerable<SpeakerPreviewDTO> topSpeakers;
+            if (useAsync)
+                topSpeakers = await _eventUOW.SpeakersRepository.GetTopSpeakersAsync(number);
+            else
+                topSpeakers = _eventUOW.SpeakersRepository.GetTopSpeakers(number);
             return View(topSpeakers);
         }
 
@@ -73,12 +85,15 @@ namespace TPD.Presentation.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        public async Task<ActionResult> GenerateQrCode()
+        public async Task<ActionResult> GenerateQrCode(bool useAsync = false)
         {
             Random rand = new Random();
             byte[] qrCode = new byte[1024 * 256];
             rand.NextBytes(qrCode);
-            _eventUOW.SpeakersRepository.SetQrCode(qrCode);
+            if (useAsync)
+                await _eventUOW.SpeakersRepository.SetQrCodeAsync(qrCode);
+            else
+                _eventUOW.SpeakersRepository.SetQrCode(qrCode);
             return View();
         }
 

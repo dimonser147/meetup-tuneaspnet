@@ -15,9 +15,9 @@ namespace TPD.DAL
             _context = context;
         }
 
-        public void Commit()
+        public int Commit()
         {
-            _context.SaveChanges();
+            return _context.SaveChanges();
         }
 
         private bool disposed = false;
@@ -43,6 +43,11 @@ namespace TPD.DAL
         public void Rollback()
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<int> CommitAsync()
+        {
+            return await _context.SaveChangesAsync();
         }
     }
 }

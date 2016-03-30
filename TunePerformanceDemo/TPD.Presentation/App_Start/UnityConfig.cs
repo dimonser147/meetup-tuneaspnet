@@ -49,10 +49,10 @@ namespace TPD.Presentation.App_Start
 
             // Repositories
             container
-                .RegisterType<TPD.DAL.Events.ISpeakersRepository, TPD.DAL.Events.Repositories.SpeakersRepositoryV2>(
+                .RegisterType<TPD.DAL.Events.ISpeakersRepository, TPD.DAL.Events.Repositories.SpeakersRepositoryV3>(
                     new InjectionConstructor(container.Resolve<DAL.TunePerformanceDemoEntities>())
                 )
-                .RegisterType<TPD.DAL.Events.IProgrammsRepository, TPD.DAL.Events.Repositories.ProgrammsRepositoryV2>(
+                .RegisterType<TPD.DAL.Events.IProgrammsRepository, TPD.DAL.Events.Repositories.ProgrammsRepositoryV3>(
                     new InjectionConstructor(container.Resolve<DAL.TunePerformanceDemoEntities>())
                 ); 
 

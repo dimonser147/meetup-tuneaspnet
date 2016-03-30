@@ -13,7 +13,7 @@ namespace TPD.DAL.Events.Repositories
             : base(dbContext)
         { }
 
-        IDictionary<ProgrammComingSoonDTO, int> IProgrammsRepository.GetComingSoon(int number)
+        public IDictionary<ProgrammComingSoonDTO, int> GetComingSoon(int number)
         {
             var results = this.GetAll()
                 .OrderBy(x => x.BeginAt)
@@ -31,7 +31,11 @@ namespace TPD.DAL.Events.Repositories
                     Date = x.Date
                 }, x => x.SpeakersNumber);
             return results;
+        }
 
+        public Task<IDictionary<ProgrammComingSoonDTO, int>> GetComingSoonAsync(int number)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -26,5 +26,10 @@ namespace TPD.DAL.Events.Repositories
             return results;
 
         }
+
+        public Task<IDictionary<ProgrammComingSoonDTO, int>> GetComingSoonAsync(int number)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

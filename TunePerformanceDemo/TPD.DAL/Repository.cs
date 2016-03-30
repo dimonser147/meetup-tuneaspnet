@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TPD.DAL
 {
-    public abstract class Repository<TEntity> : IRepository<TEntity>
+    public abstract class Repository<TEntity> : IRepository<TEntity>, IAsyncRepository<TEntity>
         where TEntity : class
     {
         protected TunePerformanceDemoEntities _dbContext;
@@ -39,6 +39,11 @@ namespace TPD.DAL
         public virtual void Update(TEntity entity)
         {
             _dbContext.Entry<TEntity>(entity).State = System.Data.Entity.EntityState.Modified;
+        }
+
+        public Task<TEntity> GetByIdAsync(int id)
+        {
+            return _dbContext.Set<TEntity>().FindAsync(id);
         }
     }
 }

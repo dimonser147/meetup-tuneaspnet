@@ -37,6 +37,11 @@ namespace TPD.DAL.Events.Repositories
             return dtoSpeakers;
         }
 
+        public Task<IEnumerable<SpeakerPreviewDTO>> GetAllSpeakersAsync()
+        {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<SpeakerPreviewDTO> GetTopSpeakers(int number)
         {
             string positionFilter = "developer";
@@ -56,10 +61,20 @@ namespace TPD.DAL.Events.Repositories
             return dtoSpeakers;
         }
 
+        public Task<IEnumerable<SpeakerPreviewDTO>> GetTopSpeakersAsync(int number)
+        {
+            throw new NotImplementedException();
+        }
+
         public void SetQrCode(byte[] qrCode)
         {
             string query = "update [Speakers] set [QrCode] = {0}";
             _dbContext.Database.ExecuteSqlCommand(query, qrCode);
+        }
+
+        public Task SetQrCodeAsync(byte[] qrCode)
+        {
+            throw new NotImplementedException();
         }
     }
 }

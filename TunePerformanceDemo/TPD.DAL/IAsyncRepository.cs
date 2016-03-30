@@ -6,11 +6,9 @@ using System.Threading.Tasks;
 
 namespace TPD.DAL
 {
-    public interface IUnitOfWork : IDisposable
+    public interface IAsyncRepository<T> : IRepository<T>
+        where T : class
     {
-        int Commit();
-
-        Task<int> CommitAsync();
-        void Rollback();
+        Task<T> GetByIdAsync(int id);
     }
 }

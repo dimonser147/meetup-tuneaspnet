@@ -76,10 +76,13 @@
     <Compile Include="Events\IProgrammsRepository.cs" />
     <Compile Include="Events\ISpeakersRepository.cs" />
     <Compile Include="Events\EventUOW.cs" />
+    <Compile Include="Events\Repositories\ProgrammsRepositoryV3.cs" />
     <Compile Include="Events\Repositories\ProgrammsRepositoryV2.cs" />
     <Compile Include="Events\Repositories\ProgrammsRepositoryV1.cs" />
+    <Compile Include="Events\Repositories\SpeakersRepositoryV3.cs" />
     <Compile Include="Events\Repositories\SpeakersRepositoryV2.cs" />
     <Compile Include="Events\Repositories\SpeakersRepositoryV1.cs" />
+    <Compile Include="IAsyncRepository.cs" />
     <Compile Include="Programm.cs">
       <DependentUpon>TunePerformanceDemo.tt</DependentUpon>
     </Compile>
