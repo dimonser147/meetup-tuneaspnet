@@ -73,4 +73,7 @@
     <Build Include="dbo\Tables\SpeakersToProgramms.sql" />
     <None Include="initialdata.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="helpers.sql" />
+  </ItemGroup>
 </Project>
