@@ -50,6 +50,7 @@ namespace TPD.Presentation.Controllers
             ViewBag.UseAsync = useAsync;
             ViewBag.TopSpeakers = topSpeakers;
             ViewBag.ComingSoonProgramms = comingSoonProgramms;
+            //Response.SetCookie(new HttpCookie("cache-killer", "ha ha ha ha"));
             return View(speakers);
         }
 
