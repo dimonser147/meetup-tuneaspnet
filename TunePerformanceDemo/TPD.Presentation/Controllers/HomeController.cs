@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using DevTrends.MvcDonutCaching;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ using System.Web;
 using System.Web.Mvc;
 using TPD.DAL.Events;
 using TPD.DTO.Events;
+using TPD.Presentation.Uitilities;
 
 namespace TPD.Presentation.Controllers
 {
@@ -25,6 +27,9 @@ namespace TPD.Presentation.Controllers
         }
 
         #region Main page
+        //[OutputCache(CacheProfile = "FiveMinutes")]
+        //[CompressContent]
+        //[DonutOutputCache(CacheProfile = "FiveMinutes")]        
         public async Task<ActionResult> Index(bool useAsync = false)
         {
             IEnumerable<SpeakerPreviewDTO> speakers;
@@ -32,7 +37,7 @@ namespace TPD.Presentation.Controllers
             IEnumerable<SpeakerPreviewDTO> topSpeakers;
             if (useAsync)
             {
-                speakers = await _eventUOW.SpeakersRepository.GetAllSpeakersAsync();                
+                speakers = await _eventUOW.SpeakersRepository.GetAllSpeakersAsync();
                 topSpeakers = await _eventUOW.SpeakersRepository.GetTopSpeakersAsync(MaxTopSpeakers);
                 comingSoonProgramms = await _eventUOW.ProgrammsRepository.GetComingSoonAsync(MaxComingSoonProgramms);
             }

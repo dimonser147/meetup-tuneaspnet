@@ -11,6 +11,8 @@ namespace TPD.DAL.Events.Repositories
 {
     public class SpeakersRepositoryV3 : Repository<Speaker>, ISpeakersRepository
     {
+        private readonly string _positionFilter = "developer";
+
         public SpeakersRepositoryV3(TunePerformanceDemoEntities dbContext)
             : base(dbContext)
         { }
@@ -53,9 +55,8 @@ namespace TPD.DAL.Events.Repositories
 
         public IEnumerable<SpeakerPreviewDTO> GetTopSpeakers(int number)
         {
-            string positionFilter = "developer";
             List<SpeakerPreviewDTO> dtoSpeakers = GetAll()
-                .Where(x => x.Position == positionFilter)
+                .Where(x => x.Position == _positionFilter)
                 .Include(x => x.SpeakerLikes)
                 .OrderBy(x => x.SpeakerLikes.Count)
                 .Take(number)
@@ -72,9 +73,8 @@ namespace TPD.DAL.Events.Repositories
 
         public async Task<IEnumerable<SpeakerPreviewDTO>> GetTopSpeakersAsync(int number)
         {
-            string positionFilter = "developer";
             List<SpeakerPreviewDTO> dtoSpeakers = await GetAll()
-                .Where(x => x.Position == positionFilter)
+                .Where(x => x.Position == _positionFilter)
                 .Include(x => x.SpeakerLikes)
                 .OrderBy(x => x.SpeakerLikes.Count)
                 .Take(number)

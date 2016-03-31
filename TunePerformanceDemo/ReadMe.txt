@@ -5,3 +5,5 @@
 4. добавить строку 127.0.0.1 tpd.com в host файл (c:\windows\system32\drivers\etc\hosts)
 5. запустить проект http://tpd.com/
 
+P.S.
+- если запускать проект через Full IIS не работает регистрация, надо перенести БД из LocalDb 

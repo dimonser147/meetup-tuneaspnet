@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using System.Web.Optimization;
+@using System.Web.Configuration;
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -27,7 +30,8 @@
                     <li><a href="/glimpse.axd">Turn on/off Glimpse</a></li>
                     <li>@Html.ActionLink("Contacts", "Contact", "Home")</li>
                 </ul>
-                @Html.Partial("_LoginPartial")
+                @*@Html.Partial("_LoginPartial")*@
+                @DevTrends.MvcDonutCaching.HtmlHelperExtensions.Action(Html, "Header", "Shared", true)
             </div>
         </div>
     </div>
