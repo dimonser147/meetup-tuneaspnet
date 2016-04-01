@@ -16,6 +16,15 @@ namespace TPD.Presentation
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            /*
+            PRESENTATION: Only use the View Engines that you require
+            */
+            //ViewEngines.Engines.Clear();
+            //ViewEngines.Engines.Add(new RazorViewEngine());
+            /*
+            PRESENTATION: Remove asp.net mvc version header
+            */
+            //MvcHandler.DisableMvcResponseHeader = true;
         }
     }
 }
